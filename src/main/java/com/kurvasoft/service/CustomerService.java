@@ -20,8 +20,6 @@ public class CustomerService {
         System.out.println("--- Your new name is : " + name + " and succesfully updated to your account");
     }
     
-    
-    
     /**
      * Send money amount to the user balance
      * @param amount 

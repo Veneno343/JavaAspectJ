@@ -22,5 +22,6 @@ public class App
         customerService.addBalance(1500000);
         customerService.getBalance();
 
+
     }
 }
