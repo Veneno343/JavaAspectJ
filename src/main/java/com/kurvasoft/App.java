@@ -15,16 +15,12 @@ public class App
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
         context.register(AspectConfig.class);
         context.refresh();
-
-<<<<<<< HEAD
-        
+     
         CustomerService customerService = context.getBean(CustomerService.class);
-        customerService.add(5, 34);
-        customerService.setName("Jonathan");
+        customerService.addName("Jonathan");
         customerService.getName();
-=======
-        CustomerService customerService = context.getBean(CustomerService.class);
-        customerService.add(5, 34);
->>>>>>> 0c7a517b06a76daf836b3d5dfad8fd5a453f8f6f
+        customerService.addBalance(1500000);
+        customerService.getBalance();
+
     }
 }

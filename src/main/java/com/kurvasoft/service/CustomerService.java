@@ -1,48 +1,77 @@
 package com.kurvasoft.service;
 
+import com.kurvasoft.annotations.Transactions;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerService {
 
-<<<<<<< HEAD
     private String name;
+    private double balance;
+    private double withdraw;
+    private double deposit;
     
     /**
-     * Summary of 2 numbers and give the result
-     * @param a
-     * @param b
+     * Set new name for account
+     * @param name
+     */
+    public void addName(String name) {
+        this.name = name;
+        System.out.println("--- Your new name is : " + name + " and succesfully updated to your account");
+    }
+    
+    
+    
+    /**
+     * Send money amount to the user balance
+     * @param amount 
+     */
+    @Transactions
+    public void addBalance(double amount) {
+        this.balance = this.balance + amount;
+        System.out.println("--- You have been added : " + amount + " to your account");
+    }
+    
+    /**
+     * Withdraw money from user account
+     * Remove balance as many as withdraw amount
+     * @param amount 
+     */
+    @Transactions
+    public void withdrawBalance(double amount) {
+        this.balance = this.balance - amount;
+        System.out.println("--- You have taken : " + amount + " from your account");
+    }
+    
+    /**
+     * Deposit account balance for invest
+     * Balance removed as many as deposited money
+     * @param amount 
+     */
+    @Transactions
+    public void depositBalance(double amount) {
+        this.balance = this.balance - amount;
+        this.deposit = amount;
+        System.out.println("--- You added : " + amount + " to your deposit account");
+    }
+    
+    
+    /**
+     * Return current balance of user
      * @return 
      */
-=======
->>>>>>> 0c7a517b06a76daf836b3d5dfad8fd5a453f8f6f
-    public Integer add(int a, int b) {
+    public double getBalance() {
+        System.out.println("--- Your current balance is : " + balance);
+        return balance;
+    }
 
-        int result = a + b;
-        System.out.println(a + " + " + b + " = " +result);
-        return result;
-    }
-<<<<<<< HEAD
-    
     /**
-     * Set the super var : Name with new value
-     * @param name 
+     * Return current name of user
+     * @return 
      */
-    
-    public void setName(String name) {
-        System.out.println("Name is set with value : " + name);
-        this.name = name;
-    }
-    
-    /**
-     * Return the last var : Name value
-     * @return
-     */
-    
     public String getName() {
-        System.out.println("Name is returned with value : " + name);
+        System.out.println("--- Your current account name is : " + name);
         return name;
     }
-=======
->>>>>>> 0c7a517b06a76daf836b3d5dfad8fd5a453f8f6f
+    
 }

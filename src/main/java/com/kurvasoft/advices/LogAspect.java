@@ -7,12 +7,11 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-<<<<<<< HEAD
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
-=======
->>>>>>> 0c7a517b06a76daf836b3d5dfad8fd5a453f8f6f
+import org.aspectj.lang.annotation.Pointcut;
+
 
 @Component
 @Aspect
@@ -24,53 +23,39 @@ public class LogAspect {
      *
      * */
 
-    // TODO buat point cut @Before @after
-<<<<<<< HEAD
-    @Before("execution(* com.kurvasoft.service.CustomerService.add(..))")
-    public void logAddBefore() {
-        System.out.println("@Before proxies :: " + LocalDateTime.now());
-    }
+   /**
+    * Log Proxy for transaction based on annotations : @Transactions
+    */
     
-    @Before("execution(* com.kurvasoft.service.CustomerService+.*(..))")
-    public void logJointBefore(JoinPoint joinp) {
-        System.out.println("@Proxy Before JoinPoint :: " + joinp.getSignature().getName());
-    }
-    
-    @After("execution(* com.kurvasoft.service.CustomerService.add(..))")
-    public void logJointAfter(JoinPoint joinp) {
-        System.out.println("@Proxy After JoinPoint :: " + joinp.getArgs().toString());
-    }
+   @Before("@annotation(com.kurvasoft.annotations.Transactions)")
+   public void logBeforeAccountTransaction() {
+       System.out.println("@Proxy Transaction Started : " + LocalDateTime.now());
+   }
 
-    @After("execution(* com.kurvasoft.service.CustomerService.add(..))")
-    public void logAddAfter() {
-        System.out.println("@After proxies :: " + LocalDateTime.now() + "\n");
-    }
-    
-    @Before("execution(* com.kurvasoft.service.CustomerService.setName(..))")
-    public void logSetNameAfter() {
-        System.out.println("@Before Proxy - SetName :: " + LocalDateTime.now());
-    }
-    
-    @AfterReturning("execution(* com.kurvasoft.service.CustomerService+.*(..))")
-    public void logReturn() {
-        System.out.println("@AfterReturn Proxy - All Method :: " + LocalDateTime.now() + " \n");
-    }
-    
-    /**
-    @Around("execution(* com.kurvasoft.service.CustomerService.setName(..))")
-    public void logSetNameAround() {
-        System.out.println("@Around Proxy - SetName :: " + LocalDateTime.now());
-    }
-    **/
-=======
-    @Before("execution(* com.kurvasoft.service.*.*(..))")
-    public void logBefore() {
-        System.out.println("@Before proxies :: " + LocalDateTime.now());
-    }
-
-    @After("execution(* com.kurvasoft.service.*.*(..))")
-    public void logAfter() {
-        System.out.println("@After proxies :: " + LocalDateTime.now());
-    }
->>>>>>> 0c7a517b06a76daf836b3d5dfad8fd5a453f8f6f
+   @After("@annotation(com.kurvasoft.annotations.Transactions)")
+   public void logAfterAccountTransaction() {
+       System.out.println("@Proxy Transaction Ended : " + LocalDateTime.now());
+   }
+   
+   /**
+    * Log Proxy for account activity
+    */
+   
+   @Before("execution (* com.kurvasoft.service.*.*(..))")
+   public void logBeforeActivity(JoinPoint joinpoint) {
+       System.out.println("@Before Proxy Activity : " + LocalDateTime.now() + " with method : " + joinpoint.getSignature().getName());
+   }
+   
+   /**
+   @Around("execution (* com.kurvasoft.service.*.*(..))")
+   public void logCurrentActivity(JoinPoint joinpoint) {
+       System.out.println("@Current Proxy Activity : " + LocalDateTime.now() + " with method : " + joinpoint.getSignature().getName());
+   }
+   **/
+   
+   @After("execution (* com.kurvasoft.service.*.*(..))")
+   public void logAfterActivity() {
+       System.out.println("@After Proxy Activity : " + LocalDateTime.now() + "\n");
+   }
+   
 }
