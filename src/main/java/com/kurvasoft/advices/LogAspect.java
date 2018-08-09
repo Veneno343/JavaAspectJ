@@ -7,9 +7,12 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+<<<<<<< HEAD
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
+=======
+>>>>>>> 0c7a517b06a76daf836b3d5dfad8fd5a453f8f6f
 
 @Component
 @Aspect
@@ -22,6 +25,7 @@ public class LogAspect {
      * */
 
     // TODO buat point cut @Before @after
+<<<<<<< HEAD
     @Before("execution(* com.kurvasoft.service.CustomerService.add(..))")
     public void logAddBefore() {
         System.out.println("@Before proxies :: " + LocalDateTime.now());
@@ -58,4 +62,15 @@ public class LogAspect {
         System.out.println("@Around Proxy - SetName :: " + LocalDateTime.now());
     }
     **/
+=======
+    @Before("execution(* com.kurvasoft.service.*.*(..))")
+    public void logBefore() {
+        System.out.println("@Before proxies :: " + LocalDateTime.now());
+    }
+
+    @After("execution(* com.kurvasoft.service.*.*(..))")
+    public void logAfter() {
+        System.out.println("@After proxies :: " + LocalDateTime.now());
+    }
+>>>>>>> 0c7a517b06a76daf836b3d5dfad8fd5a453f8f6f
 }

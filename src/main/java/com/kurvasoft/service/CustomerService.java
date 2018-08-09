@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerService {
 
+<<<<<<< HEAD
     private String name;
     
     /**
@@ -13,12 +14,15 @@ public class CustomerService {
      * @param b
      * @return 
      */
+=======
+>>>>>>> 0c7a517b06a76daf836b3d5dfad8fd5a453f8f6f
     public Integer add(int a, int b) {
 
         int result = a + b;
         System.out.println(a + " + " + b + " = " +result);
         return result;
     }
+<<<<<<< HEAD
     
     /**
      * Set the super var : Name with new value
@@ -39,4 +43,6 @@ public class CustomerService {
         System.out.println("Name is returned with value : " + name);
         return name;
     }
+=======
+>>>>>>> 0c7a517b06a76daf836b3d5dfad8fd5a453f8f6f
 }
