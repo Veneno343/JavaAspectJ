@@ -26,17 +26,21 @@ public class LogAspect {
      * */
 
    /**
-    * Log Proxy for transaction based on annotations : @Transactions
+    *   Log Proxy for transaction based on annotations : @Transactions
     */
    
-   /**
-   @Before("@annotation(com.kurvasoft.annotations.Transactions)")
-   public void logBeforeAccountTransaction() {
-       System.out.println("@Proxy Transaction Started : " + LocalDateTime.now());
+   
+   //@Before("@annotation(com.kurvasoft.annotations.Transactions)")
+   //public void logBeforeAccountTransaction() {
+   //    System.out.println("@Proxy Transaction Started : " + LocalDateTime.now());
+   //}
+    
+   @Pointcut("@annotation(com.kurvasoft.annotations.Transactions)")
+   public void accountTransactions() {
+       //Empty implementation,starts using advice only
    }
-   */
 
-   @Around("@annotation(com.kurvasoft.annotations.Transactions)")
+   @Around("accountTransactions()")
    public void logRunningAccountTransaction(ProceedingJoinPoint projoinpoint) throws Throwable{
        System.out.println("@Proxy Transaction before Record with method -  " + projoinpoint.getSignature().getName() + " : " + LocalDateTime.now());
        
@@ -48,17 +52,13 @@ public class LogAspect {
        System.out.println("@Proxy Transaction after Record with method -  " + projoinpoint.getSignature().getName() + " : " + LocalDateTime.now());
    }
     
-   /**
-   @After("@annotation(com.kurvasoft.annotations.Transactions)")
-   public void logAfterAccountTransaction() {
-       System.out.println("@Proxy Transaction Ended : " + LocalDateTime.now());
-   }
-   */
+   
+   //@After("@annotation(com.kurvasoft.annotations.Transactions)")
+   //public void logAfterAccountTransaction() {
+   //    System.out.println("@Proxy Transaction Ended : " + LocalDateTime.now());
+   //}
    
 
-
-
-   
    /**
     * Log Proxy for account activity
     */
@@ -68,20 +68,15 @@ public class LogAspect {
        System.out.println("@Before Proxy Activity : " + LocalDateTime.now() + " with method : " + joinpoint.getSignature().getName());
    }
    
-   /**
-   @Around("execution (* com.kurvasoft.service.*.*(..))")
-   public void logCurrentActivity(JoinPoint joinpoint) {
-       System.out.println("@Current Proxy Activity : " + LocalDateTime.now() + " with method : " + joinpoint.getSignature().getName());
-   }
-   **/
+   //@Around("execution (* com.kurvasoft.service.*.*(..))")
+   //public void logCurrentActivity(ProceedingJoinPoint projoinpoint) {
+   //    System.out.println("@Current Proxy Activity : " + LocalDateTime.now() + " with method : " + joinpoint.getSignature().getName());
+   //}
    
    @After("execution (* com.kurvasoft.service.*.*(..))")
    public void logAfterActivity() {
-       System.out.println("@After Proxy Activity : " + LocalDateTime.now() +);
+       System.out.println("@After Proxy Activity : " + LocalDateTime.now());
    }
-   
-   
-   
    
    
    /**
@@ -91,13 +86,6 @@ public class LogAspect {
    
    @AfterReturning("execution (* com.kurvasoft.service.CustomerService+.*(..))")
    public void logSuccessReturn(JoinPoint joinpoint) {
-       System.out.println("@Success Proxy : " + joinpoint.getSignature());
-   }
-   
-   
-   
-   
-   
-   
-   
+       System.out.println("@Success Proxy : " + joinpoint.getSignature() + "\n");
+   }  
 }

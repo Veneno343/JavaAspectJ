@@ -21,7 +21,8 @@ public class App
         customerService.getName();
         customerService.addBalance(1500000);
         customerService.getBalance();
-
+        customerService.depositBalance(300000);
+        customerService.getBalance();
 
     }
 }

@@ -55,21 +55,21 @@ public class CustomerService {
     
     
     /**
-     * Return current balance of user
-     * @return 
-     */
-    public double getBalance() {
-        System.out.println("--- Your current balance is : " + balance);
-        return balance;
-    }
-
-    /**
      * Return current name of user
      * @return 
      */
     public String getName() {
         System.out.println("--- Your current account name is : " + name);
         return name;
+    }
+    
+    /**
+     * Return current balance of user
+     * @return 
+     */
+    public double getBalance() {
+        System.out.println("--- Your current balance is : " + balance);
+        return balance;
     }
     
 }
